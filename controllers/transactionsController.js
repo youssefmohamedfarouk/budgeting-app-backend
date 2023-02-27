@@ -11,11 +11,13 @@ transactions.get("/", (req, res) => {
 // -- show --
 transactions.get("/:id", (req, res) => {
   const { id } = req.params;
-  const indexOfTransaction = transactionsArr.map((e) => e.id).indexOf(id);
+  const indexOfTransaction = transactionsArr.findIndex((e) => {
+    return e.id === id;
+  });
   console.log(indexOfTransaction);
   transactionsArr[indexOfTransaction] !== -1
-    ? res.json(transactionsArr[id])
-    : res.redirect("/*");
+    ? res.json(transactionsArr[indexOfTransaction])
+    : res.status(404).json({ error: "Transaction not found" });
 });
 
 // -- create --
