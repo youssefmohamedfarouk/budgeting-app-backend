@@ -23,7 +23,7 @@ transactions.get("/:id", (req, res) => {
 // -- create --
 transactions.post("/", validation, (req, res) => {
   transactionsArr.push(req.body);
-  res.json(transactionsArr);
+  res.json(req.body);
   // res.json(transactionsArr[transactionsArr.length - 1]);
 });
 
