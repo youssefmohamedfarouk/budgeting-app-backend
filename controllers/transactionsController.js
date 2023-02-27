@@ -29,8 +29,14 @@ transactions.post("/", validation, (req, res) => {
 
 // -- delete --
 transactions.delete("/:id", (req, res) => {
-  if (transactionsArr[req.params.id]) {
-    const removedtransaction = transactionsArr.splice(req.params.id, 1);
+  const indexOfSingleTransaction = transactionsArr.findIndex(
+    (e) => e.id === req.params.id
+  );
+  if (indexOfSingleTransaction !== -1) {
+    const removedtransaction = transactionsArr.splice(
+      indexOfSingleTransaction,
+      1
+    );
     res.status(200).json(removedtransaction);
   } else {
     res.status(404).json({ error: "Transaction not found" });
