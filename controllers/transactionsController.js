@@ -11,8 +11,11 @@ transactions.get("/", (req, res) => {
 // -- show --
 transactions.get("/:id", (req, res) => {
   const { id } = req.params;
-  console.log(id);
-  transactionsArr[id] ? res.json(transactionsArr[id]) : res.redirect("/*");
+  const indexOfTransaction = transactionsArr.map((e) => e.id).indexOf(id);
+  console.log(indexOfTransaction);
+  transactionsArr[indexOfTransaction] !== -1
+    ? res.json(transactionsArr[id])
+    : res.redirect("/*");
 });
 
 // -- create --
