@@ -48,7 +48,7 @@ transactions.put("/:id", validation, (req, res) => {
   const indexOfSingleTransaction = transactionsArr.findIndex(
     (e) => e.id === req.params.id
   );
-  if (transactionsArr[indexOfSingleTransaction]) {
+  if (indexOfSingleTransaction !== -1) {
     transactionsArr[indexOfSingleTransaction] = req.body;
     res.status(200).json(transactionsArr);
   } else {
