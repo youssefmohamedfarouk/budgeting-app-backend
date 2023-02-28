@@ -45,8 +45,11 @@ transactions.delete("/:id", (req, res) => {
 
 // UPDATE
 transactions.put("/:id", validation, (req, res) => {
-  if (transactionsArr[req.params.id]) {
-    transactionsArr[req.params.id] = req.body;
+  const indexOfSingleTransaction = transactionsArr.findIndex(
+    (e) => e.id === req.params.id
+  );
+  if (transactionsArr[indexOfSingleTransaction]) {
+    transactionsArr[indexOfSingleTransaction] = req.body;
     res.status(200).json(transactionsArr);
   } else {
     res.status(404).json({ error: "Transaction not found" });
