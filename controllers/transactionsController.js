@@ -50,7 +50,7 @@ transactions.put("/:id", validation, (req, res) => {
   );
   if (indexOfSingleTransaction !== -1) {
     transactionsArr[indexOfSingleTransaction] = req.body;
-    res.status(200).json(transactionsArr);
+    res.status(200).json(transactionsArr[indexOfSingleTransaction]);
   } else {
     res.status(404).json({ error: "Transaction not found" });
   }
