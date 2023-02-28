@@ -36,7 +36,7 @@ transactions.delete("/:id", (req, res) => {
     const removedtransaction = transactionsArr.splice(
       indexOfSingleTransaction,
       1
-    );
+    )[0];
     res.status(200).json(removedtransaction);
   } else {
     res.status(404).json({ error: "Transaction not found" });
